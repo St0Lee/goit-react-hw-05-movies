@@ -1,5 +1,6 @@
-import styles from "./trending-movies-item.module.css"
 import { Link, useLocation } from "react-router-dom";
+
+import styles from "./trending-movies-item.module.css"
 
 const TrendingMoviesItem = ({id, title, overview, poster_path}) => {
     const location = useLocation();
