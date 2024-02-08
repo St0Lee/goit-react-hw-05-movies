@@ -1,0 +1,22 @@
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    margin: auto;
+    list-style: none;
+    margin: 0px 20px 0px 10px;
+}
+
+.actorImg {
+    width: 200px;
+}
+
+.castInfo{
+    text-align: center;
+    max-width: 200px;
+}
