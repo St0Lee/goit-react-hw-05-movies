@@ -1,11 +1,12 @@
 import { useParams, useNavigate, useLocation, Link, Outlet } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 
 import styles from "./single-movie.module.css"
 
 import { getMovieById } from "api/movies";
 
 import Loader from "components/Loader/Loader";
+import MoviePlaceholder from "../../images/movie-poster-placeholder.png"
 
 const SingleMovie = () => {
     const [movie, setMovie] = useState();
@@ -48,7 +49,7 @@ const SingleMovie = () => {
                     <button onClick={goBack} type="button" className={styles.btn}>Go Back</button>
                     <div className={styles.wrapper}>
                     <img
-                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                        src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`: MoviePlaceholder}
                         alt={movie.title}
                         className={styles.poster}
                     />
@@ -58,8 +59,10 @@ const SingleMovie = () => {
                     <p className={styles.genres}>Genres: {genres && genres.join(", ")}</p>
                     </div>
                     <Link to="cast" state={{ from }} className={styles.link}>Show Cast</Link>
-                    <Outlet />
                     <Link to="reviews" state={{ from }} className={styles.link}>Show Reviews</Link>
+                    <Suspense>
+                    <Outlet />
+                    </Suspense>
                 </div>
             )}
         </>
